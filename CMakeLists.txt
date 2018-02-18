@@ -7,7 +7,14 @@ add_definitions(-std=c++11)
 set(CXX_FLAGS "-Wall")
 set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
 
-set(sources src/particle_filter.cpp src/main.cpp)
+set(headers
+  src/helper_functions.h
+  src/map.h
+  src/particle_filter.h)
+
+set(sources
+  src/particle_filter.cpp
+  src/main.cpp)
 
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
@@ -21,7 +28,7 @@ link_directories(/usr/local/Cellar/libuv/1*/lib)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
 
 
-add_executable(particle_filter ${sources})
+add_executable(particle_filter ${sources} ${headers})
 
 
 target_link_libraries(particle_filter z ssl uv uWS)
